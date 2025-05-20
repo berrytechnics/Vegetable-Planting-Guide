@@ -19,8 +19,15 @@ export const MONTHS: Month[] = [
 ];
 
 /**
- * Database of common vegetables and their planting months by USDA zone
- * Month numbers: 1=January, 2=February, etc.
+ * Comprehensive database of vegetable planting information
+ * Contains detailed data about planting times, growing requirements, and care instructions
+ * for various vegetables across different USDA hardiness zones.
+ * 
+ * @property {string} name - The common name of the vegetable
+ * @property {VegetableCategory} category - The category of the vegetable (e.g., 'Root', 'Leafy', 'Fruit')
+ * @property {number} daysToHarvest - Average number of days from planting to harvest
+ * @property {Object} zones - Planting information organized by USDA hardiness zones
+ * @property {number[]} zones[zone].plantingMonths - Array of month numbers (1-12) when planting is recommended
  */
 export const VEGETABLE_DATABASE: Vegetable[] = [
   {
