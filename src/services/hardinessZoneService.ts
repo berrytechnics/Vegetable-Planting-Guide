@@ -2,7 +2,19 @@
  * Service for retrieving USDA hardiness zone information
  */
 
-const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
+export function getApiKey() {
+  // In test environment
+  if (process.env.NODE_ENV === 'test') {
+    return process.env.VITE_RAPIDAPI_KEY || '';
+  }
+  
+  // In browser environment
+  if (typeof window !== 'undefined') {
+    return (window as any).ENV?.VITE_RAPIDAPI_KEY || '';
+  }
+  
+  return '';
+}
 
 /**
  * Gets the USDA hardiness zone for a given zip code using the RapidAPI service
@@ -11,20 +23,23 @@ const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
  * @throws Error if the API request fails or returns invalid data
  */
 export async function getHardinessZone(zipCode: string): Promise<string> {
+  if (!zipCode) {
+    throw new Error('Zip code is required');
+  }
   try {
     const response = await fetch(
       `https://plant-hardiness-zone.p.rapidapi.com/zipcodes/${zipCode}`,
       {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': apiKey || '',
+          'X-RapidAPI-Key': getApiKey() || '',
           'X-RapidAPI-Host': 'plant-hardiness-zone.p.rapidapi.com',
         },
       }
     );
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch hardiness zone data: ${response.statusText}`);
+      throw new Error('Failed to fetch hardiness zone data');
     }
 
     const data = await response.json();

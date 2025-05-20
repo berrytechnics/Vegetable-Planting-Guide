@@ -53,7 +53,10 @@ export async function getPlantingGuide(zipCode: string): Promise<PlantingRecomme
   try {
     const zone = await getHardinessZone(zipCode);
     return getPlantingRecommendations(zone);
-  } catch (error) {
+  } catch (error: any) {
+    if (error instanceof Error && error.message === 'Zip code is required') {
+      throw error;
+    }
     throw new Error('Failed to get planting guide');
   }
 } 
