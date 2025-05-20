@@ -1,0 +1,36 @@
+{
+  "name": "veg_guide",
+  "version": "1.0.0",
+  "description": "Vegetable Planting Guide by USDA Zone",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@apiverve/hardinesszone": "^1.1.9",
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/cli": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "@capacitor/ios": "^7.2.0",
+    "node-fetch": "^2.6.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.3.1",
+    "react-native": "^0.79.2",
+    "react-native-web": "^0.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/node-fetch": "^2.6.2",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "vite": "^4.4.5"
+  }
+}
