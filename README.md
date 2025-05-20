@@ -56,8 +56,14 @@ src/
 import { getHardinessZone } from './services/hardinessZoneService';
 
 // Get the hardiness zone for a zip code
-const zone = await getHardinessZone('12345');
-console.log(`Your hardiness zone is: ${zone}`);
+try {
+  const zone = await getHardinessZone('12345');
+  console.log(`Your hardiness zone is: ${zone}`);
+} catch (error) {
+  if (error instanceof Error) {
+    console.error('Error:', error.message);
+  }
+}
 ```
 
 ### Getting Planting Recommendations
@@ -65,9 +71,44 @@ console.log(`Your hardiness zone is: ${zone}`);
 import { getPlantingGuide } from './services/plantingService';
 
 // Get planting recommendations for a zip code
-const recommendations = await getPlantingGuide('12345');
-console.log('Planting recommendations:', recommendations);
+try {
+  const recommendations = await getPlantingGuide('12345');
+  console.log('Planting recommendations:', recommendations);
+} catch (error) {
+  if (error instanceof Error) {
+    console.error('Error:', error.message);
+  }
+}
 ```
+
+### Error Handling
+- If you call `getHardinessZone` or `getPlantingGuide` with an empty zip code, an error with the message `Zip code is required` will be thrown.
+- If the API request fails or returns invalid data, a descriptive error will be thrown (e.g., `Failed to get hardiness zone data`, `Failed to get planting guide`).
+- Always use try/catch when calling these functions in your own code.
+
+## Running & Writing Tests
+
+This project uses **Jest** and **React Testing Library** for unit and integration tests.
+
+### Run all tests
+```bash
+npm test
+```
+
+### Test file locations
+- All test files are located in `src/**/__tests__/*.test.ts(x)`
+- Example: `src/services/__tests__/plantingService.test.ts`
+
+### Writing tests
+- Use Jest for service and utility functions
+- Use React Testing Library for component tests
+- Mock API calls and environment variables as needed
+- Example test for error handling:
+  ```typescript
+  it('should throw error for empty zip code', async () => {
+    await expect(getPlantingGuide('')).rejects.toThrow('Zip code is required');
+  });
+  ```
 
 ## API
 
@@ -97,10 +138,23 @@ The application uses the [phzmapi.org](https://phzmapi.org/) API to look up USDA
 ## Technologies Used
 
 - React 18+
-- TypeScript 5+
+- TypeScript 5+ (strict mode enabled)
 - Tailwind CSS 3+
 - Vite 4+
+- Jest & React Testing Library
 - RapidAPI for USDA zone data
+
+## Troubleshooting
+
+- **Tests fail due to environment variables:**
+  - Ensure you have a `.env` file with `VITE_RAPIDAPI_KEY` set.
+- **API errors or network issues:**
+  - Check your RapidAPI key and network connection.
+  - The API may have rate limits or downtime.
+- **TypeScript errors:**
+  - The codebase uses strict TypeScript settings. Make sure your code and tests are properly typed.
+- **Mocking issues in tests:**
+  - Ensure you are mocking services and API calls as shown in the test files.
 
 ## Contributing
 
