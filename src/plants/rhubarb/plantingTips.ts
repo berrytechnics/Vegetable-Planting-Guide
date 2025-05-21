@@ -18,4 +18,4 @@ export const rhubarbPlantingTips = {
   harvest: {
     timing: 'Harvest stalks when they reach 12-18 inches',
   },
-}; 
+};

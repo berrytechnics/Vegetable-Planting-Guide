@@ -39,7 +39,7 @@ export enum VegetableCategory {
   CUCURBIT = 'Cucurbits',
   PERENNIAL = 'Perennial Vegetables',
   HERB = 'Herbs',
-  OTHER = 'Other Vegetables'
+  OTHER = 'Other Vegetables',
 }
 
 /**
@@ -135,7 +135,10 @@ type CareInstructions = string[] | { instructions: string[] };
 /**
  * Type for problem solutions that can be either a string or an array of objects
  */
-type ProblemSolutions = string | Array<{ issue: string; solution: string }> | Array<{ name: string; solution: string }>;
+type ProblemSolutions =
+  | string
+  | Array<{ issue: string; solution: string }>
+  | Array<{ name: string; solution: string }>;
 
 /**
  * Interface for planting tips that extends the base interface with optional care and problems

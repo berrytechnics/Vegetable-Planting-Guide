@@ -36,4 +36,4 @@ export const rhubarbPlantingData = {
     betweenPlants: '36-48 inches',
     betweenRows: '48-60 inches',
   },
-}; 
+};

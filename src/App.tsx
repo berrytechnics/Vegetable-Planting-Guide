@@ -130,10 +130,7 @@ const App: React.FC = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <SearchInput
-                    value={searchTerm}
-                    onChange={setSearchTerm}
-                  />
+                  <SearchInput value={searchTerm} onChange={setSearchTerm} />
                 </div>
               </div>
             </>

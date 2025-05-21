@@ -18,4 +18,4 @@ export const oreganoPlantingTips = {
   harvest: {
     timing: 'Harvest leaves as needed',
   },
-}; 
+};

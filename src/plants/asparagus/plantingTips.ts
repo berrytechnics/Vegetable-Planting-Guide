@@ -18,4 +18,4 @@ export const asparagusPlantingTips = {
   harvest: {
     timing: 'Harvest spears when they reach 6-8 inches',
   },
-}; 
+};

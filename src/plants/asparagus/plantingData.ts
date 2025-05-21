@@ -36,4 +36,4 @@ export const asparagusPlantingData = {
     betweenPlants: '12-18 inches',
     betweenRows: '36-48 inches',
   },
-}; 
+};

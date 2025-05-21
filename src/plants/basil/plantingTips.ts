@@ -18,4 +18,4 @@ export const basilPlantingTips = {
   harvest: {
     timing: 'Harvest leaves as needed',
   },
-}; 
+};

@@ -18,4 +18,4 @@ export const artichokePlantingTips = {
   harvest: {
     timing: 'Harvest buds when they are tight and firm',
   },
-}; 
+};

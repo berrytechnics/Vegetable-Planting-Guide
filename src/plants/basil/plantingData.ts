@@ -36,4 +36,4 @@ export const basilPlantingData = {
     betweenPlants: '12-18 inches',
     betweenRows: '18-24 inches',
   },
-}; 
+};
