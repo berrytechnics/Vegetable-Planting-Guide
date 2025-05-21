@@ -7,11 +7,13 @@
 import React, { useState } from 'react';
 import { CategoryFilter } from './components/CategoryFilter';
 import { PlantingCalendar } from './components/PlantingCalendar';
+import { SearchInput } from './components/SearchInput';
 import { ZipCodeInput } from './components/ZipCodeInput';
 import './index.css';
 import { getHardinessZone } from './services/hardinessZoneService';
 import { getPlantingRecommendations } from './services/plantingService';
 import { PlantingRecommendation, VegetableCategory } from './types/planting';
+import { fuzzySearch } from './utils/search';
 
 const App: React.FC = () => {
   const [zipCode, setZipCode] = useState<string>('');
@@ -21,6 +23,7 @@ const App: React.FC = () => {
   const [selectedCategories, setSelectedCategories] = useState<VegetableCategory[]>(
     Object.values(VegetableCategory)
   );
+  const [searchTerm, setSearchTerm] = useState('');
 
   /**
    * Handles changes to the zip code input.
@@ -117,17 +120,27 @@ const App: React.FC = () => {
           />
 
           {zone && (
-            <CategoryFilter
-              selectedCategories={selectedCategories}
-              onCategoryChange={handleCategoryChange}
-            />
+            <>
+              <CategoryFilter
+                selectedCategories={selectedCategories}
+                onCategoryChange={handleCategoryChange}
+              />
+              <SearchInput
+                value={searchTerm}
+                onChange={setSearchTerm}
+              />
+            </>
           )}
         </div>
 
         {zone && (
           <PlantingCalendar
             zone={zone}
-            plantingGuide={plantingGuide}
+            plantingGuide={plantingGuide.filter(rec => {
+              const matches = fuzzySearch(searchTerm, rec.vegetable);
+              console.log(`Searching "${searchTerm}" in "${rec.vegetable}": ${matches}`);
+              return matches;
+            })}
             selectedCategories={selectedCategories}
           />
         )}
