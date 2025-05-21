@@ -7,4 +7,4 @@
 export function fuzzySearch(searchTerm: string, text: string): boolean {
   if (!searchTerm) return true;
   return text.toLowerCase().includes(searchTerm.toLowerCase());
-} 
+}
