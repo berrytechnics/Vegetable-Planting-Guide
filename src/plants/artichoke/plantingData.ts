@@ -5,12 +5,8 @@ export const artichokePlantingData = {
   category: VegetableCategory.OTHER,
   daysToHarvest: 180,
   zones: {
-    '3': { plantingMonths: [5] },
-    '4': { plantingMonths: [4, 5] },
-    '5': { plantingMonths: [4, 5] },
-    '6': { plantingMonths: [3, 4, 5] },
-    '7': { plantingMonths: [2, 3, 4, 5, 6] },
-    '8': { plantingMonths: [1, 2, 3, 4, 5, 6, 7] },
+    '7': { plantingMonths: [3, 4, 5, 6] },
+    '8': { plantingMonths: [2, 3, 4, 5, 6, 7] },
     '9': { plantingMonths: [1, 2, 3, 4, 5, 6, 7, 8] },
     '10': { plantingMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
   },
@@ -31,9 +27,9 @@ export const artichokePlantingData = {
       daysToHarvest: 180,
     },
   ],
-  companionPlants: ['Tarragon', 'Cabbage', 'Sunflowers', 'Tarragon'],
+  companionPlants: ['Tarragon', 'Cabbage', 'Sunflowers'],
   spacing: {
     betweenPlants: '36-48 inches',
     betweenRows: '48-60 inches',
   },
-}; 
+};

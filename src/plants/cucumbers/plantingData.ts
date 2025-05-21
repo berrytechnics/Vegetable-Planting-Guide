@@ -10,9 +10,9 @@ export const cucumbersPlantingData = {
     '5': { plantingMonths: [5, 6] },
     '6': { plantingMonths: [4, 5, 6] },
     '7': { plantingMonths: [3, 4, 5, 6, 7] },
-    '8': { plantingMonths: [2, 3, 4, 5, 6, 7, 8] },
-    '9': { plantingMonths: [2, 3, 4, 5, 6, 7, 8, 9] },
-    '10': { plantingMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+    '8': { plantingMonths: [2, 3, 4, 5, 8, 9] },
+    '9': { plantingMonths: [2, 3, 4, 8, 9, 10] },
+    '10': { plantingMonths: [1, 2, 3, 9, 10, 11] },
   },
   varieties: [
     {
