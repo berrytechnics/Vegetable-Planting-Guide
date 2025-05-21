@@ -5,9 +5,9 @@ export const tomatoPlantingData = {
   category: VegetableCategory.FRUIT,
   daysToHarvest: 60,
   zones: {
-    "3": { plantingMonths: [5, 6] },
+    "3": { plantingMonths: [6] },
     "4": { plantingMonths: [5, 6] },
-    "5": { plantingMonths: [4, 5, 6] },
+    "5": { plantingMonths: [5, 6] },
     "6": { plantingMonths: [4, 5, 6] },
     "7": { plantingMonths: [3, 4, 5, 6, 7] },
     "8": { plantingMonths: [2, 3, 4, 5, 8, 9] },

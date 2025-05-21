@@ -5,7 +5,7 @@ export const brusselsSproutsPlantingData = {
   category: VegetableCategory.CRUCIFEROUS,
   daysToHarvest: 90,
   zones: {
-    "3": { plantingMonths: [5, 6] },
+    "3": { plantingMonths: [4, 5, 6] },
     "4": { plantingMonths: [4, 5, 6] },
     "5": { plantingMonths: [4, 5, 6, 7] },
     "6": { plantingMonths: [3, 4, 5, 6, 7] },

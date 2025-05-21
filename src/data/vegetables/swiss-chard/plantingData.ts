@@ -5,7 +5,7 @@ export const swissChardPlantingData = {
   category: VegetableCategory.LEAFY,
   daysToHarvest: 55,
   zones: {
-    "3": { plantingMonths: [5, 6, 7] },
+    "3": { plantingMonths: [4, 5, 6, 7] },
     "4": { plantingMonths: [4, 5, 6, 7] },
     "5": { plantingMonths: [4, 5, 6, 7, 8] },
     "6": { plantingMonths: [3, 4, 5, 6, 7, 8] },
