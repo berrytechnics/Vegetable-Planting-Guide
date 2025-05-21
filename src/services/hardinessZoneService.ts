@@ -1,26 +1,37 @@
 /**
- * Service for retrieving USDA hardiness zone information using the RapidAPI service
+ * Service for retrieving USDA hardiness zone information using the RapidAPI service.
+ * This service provides functionality to look up plant hardiness zones based on US zip codes.
+ * It includes rate limiting to prevent API abuse and proper error handling for various scenarios.
  */
 
-
-const MIN_REQUEST_INTERVAL = 1000; // 1 second between requests
+const MIN_REQUEST_INTERVAL = 1000; // 1 second between requests to respect API rate limits
 let lastRequestTime = 0;
 
+/**
+ * Retrieves the RapidAPI key from environment variables.
+ * @returns The RapidAPI key or an empty string if not configured
+ */
 export function getApiKey(): string {
-  return process.env.VITE_RAPIDAPI_KEY || '';
+  return import.meta.env.VITE_RAPIDAPI_KEY || '';
 }
 
 /**
- * Gets the USDA hardiness zone for a given zip code
+ * Gets the USDA hardiness zone for a given zip code.
  * @param zipCode - The 5-digit US zip code to look up
  * @returns Promise that resolves to the hardiness zone number (e.g., "7")
- * @throws Error if the API request fails or returns invalid data
+ * @throws Error if:
+ *   - Zip code is empty
+ *   - API key is not configured
+ *   - API request fails
+ *   - Rate limit is exceeded
+ *   - Invalid zip code format
  */
 export async function getHardinessZone(zipCode: string): Promise<string> {
   if (!zipCode) {
     throw new Error('Zip code is required');
   }
 
+  // Implement rate limiting
   const now = Date.now();
   const timeSinceLastRequest = now - lastRequestTime;
   if (timeSinceLastRequest < MIN_REQUEST_INTERVAL) {
@@ -28,7 +39,7 @@ export async function getHardinessZone(zipCode: string): Promise<string> {
   }
 
   try {
-    const apiKey = await getApiKey();
+    const apiKey = getApiKey();
     
     if (!apiKey) {
       throw new Error('API key is not configured. Please check your environment variables.');
