@@ -1,93 +1,43 @@
 import React from 'react';
 import { COMPANION_PLANTS, PLANTING_TIPS } from '../data/vegetables';
-import { PlantingRecommendation, VegetableCategory } from '../types/planting';
+import { PlantingRecommendation, PlantingTips, VegetableCategory } from '../types/planting';
 import SeedlingButton from './SeedlingButton';
 
 interface PlantingCalendarProps {
+  /** The USDA hardiness zone */
   zone: string;
+  /** Array of planting recommendations */
   plantingGuide: PlantingRecommendation[];
+  /** Array of selected vegetable categories */
   selectedCategories: VegetableCategory[];
 }
 
-// Type for the planting tips data structure
-type PlantingTip = {
-  soil: {
-    type: string;
-    ph: string;
-    preparation: string[];
-  };
-  sunlight: {
-    requirement?: string;
-    requirements?: string;
-    notes: string;
-  };
-  watering: {
-    frequency: string;
-    method: string;
-    tips: string[];
-  };
-  care: string[] | { instructions: string[] };
-  harvest: {
-    timing: string;
-    method: string;
-    storage: string;
-  };
-  problems: {
-    common?: Array<{
-      issue: string;
-      solution: string;
-    }>;
-    issues?: Array<{
-      name: string;
-      solution: string;
-    }>;
-    [key: string]:
-      | string
-      | Array<{ issue: string; solution: string }>
-      | Array<{ name: string; solution: string }>
-      | undefined;
-  };
-};
+type CompanionPlantsRecord = Record<string, string[]>;
+type PlantingTipsRecord = Record<string, PlantingTips>;
 
-// Type for the companion plants record
-type CompanionPlantsRecord = {
-  [key: string]: string[];
-};
-
-// Type for valid vegetable names
-type VegetableName = string;
-
-// Helper function to check if care is an object with instructions
-function hasInstructions(
-  care: string[] | { instructions: string[] }
-): care is { instructions: string[] } {
+/**
+ * Helper function to check if care is an object with instructions
+ */
+function hasInstructions(care: string[] | { instructions: string[] }): care is { instructions: string[] } {
   return typeof care === 'object' && 'instructions' in care;
 }
 
-// Helper function to check if a string is a valid vegetable name
-function isValidVegetableName(name: string): name is VegetableName {
-  return name in (COMPANION_PLANTS as CompanionPlantsRecord);
-}
-
-// Helper function to get companion plants safely
+/**
+ * Helper function to get companion plants safely
+ */
 function getCompanionPlants(vegetable: string): string[] {
-  if (!isValidVegetableName(vegetable)) {
-    return [];
-  }
   return (COMPANION_PLANTS as CompanionPlantsRecord)[vegetable] || [];
 }
 
-// Helper function to get planting tips safely
-function getPlantingTips(vegetable: string): PlantingTip | null {
-  if (!isValidVegetableName(vegetable)) {
-    return null;
-  }
-  return (PLANTING_TIPS as unknown as Record<string, PlantingTip>)[vegetable] || null;
+/**
+ * Helper function to get planting tips safely
+ */
+function getPlantingTips(vegetable: string): PlantingTips | null {
+  return (PLANTING_TIPS as PlantingTipsRecord)[vegetable] || null;
 }
 
 /**
- * Displays a monthly planting calendar showing which vegetables can be planted in each month
- * based on the selected categories and hardiness zone.
+ * Component that displays a monthly planting calendar based on selected categories and hardiness zone
  */
 export const PlantingCalendar: React.FC<PlantingCalendarProps> = ({
   zone,
@@ -95,99 +45,73 @@ export const PlantingCalendar: React.FC<PlantingCalendarProps> = ({
   selectedCategories,
 }) => {
   const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    { name: 'January', shortName: 'Jan', number: 1 },
+    { name: 'February', shortName: 'Feb', number: 2 },
+    { name: 'March', shortName: 'Mar', number: 3 },
+    { name: 'April', shortName: 'Apr', number: 4 },
+    { name: 'May', shortName: 'May', number: 5 },
+    { name: 'June', shortName: 'Jun', number: 6 },
+    { name: 'July', shortName: 'Jul', number: 7 },
+    { name: 'August', shortName: 'Aug', number: 8 },
+    { name: 'September', shortName: 'Sep', number: 9 },
+    { name: 'October', shortName: 'Oct', number: 10 },
+    { name: 'November', shortName: 'Nov', number: 11 },
+    { name: 'December', shortName: 'Dec', number: 12 },
   ];
 
   /**
-   * Gets planting recommendations for a specific month
-   * @param monthNumber - The month number (1-12)
-   * @returns Array of planting recommendations for the month
+   * Get recommendations for a specific month based on selected categories
    */
-  const getRecommendationsByMonth = (monthNumber: number) => {
-    if (selectedCategories.length === 0) return [];
-
+  const getRecommendationsForMonth = (monthNumber: number) => {
     return plantingGuide.filter(rec => {
-      const monthIndex = monthNumber - 1;
-      return selectedCategories.includes(rec.category) && rec.plantingMonths[monthIndex];
+      const isInSelectedCategory = selectedCategories.includes(rec.category);
+      const isPlantingMonth = rec.plantingMonths.includes(monthNumber.toString());
+      return isInSelectedCategory && isPlantingMonth;
     });
   };
 
   return (
-    <div>
-      <div className="mb-4 text-lg font-semibold text-green-800" data-testid="zone-label">
-        Zone {zone}
-      </div>
+    <div className="mt-8">
+      <h2 className="text-2xl font-semibold text-gray-900 mb-4">Planting Calendar for Zone {zone}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {months.map((month, index) => {
-          const recommendations = getRecommendationsByMonth(index + 1);
+        {months.map(month => {
+          const recommendations = getRecommendationsForMonth(month.number);
+          if (recommendations.length === 0) return null;
 
           return (
-            <div key={month} className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">{month}</h2>
-              {recommendations.length > 0 ? (
-                <div className="space-y-4">
-                  {recommendations.map(rec => (
-                    <div
-                      key={rec.vegetable}
-                      className="p-4 bg-green-50 rounded-md border border-green-100"
-                    >
-                      <h3 className="font-medium text-green-900 flex justify-between items-center">
-                        <span>{rec.vegetable}</span>
-                        <SeedlingButton
-                          plantName={rec.vegetable}
-                          tips={(() => {
-                            const tips = getPlantingTips(rec.vegetable);
-                            if (!tips) {
-                              return [
-                                `Plant in ${rec.category.toLowerCase()} soil`,
-                                `Harvest in approximately ${rec.daysToHarvest} days`,
-                                ...(getCompanionPlants(rec.vegetable).length > 0
-                                  ? [
-                                      `Best planted with: ${getCompanionPlants(rec.vegetable).join(', ')}`,
-                                    ]
-                                  : []),
-                              ];
-                            }
-                            return [
-                              `Soil: ${tips.soil.type}`,
-                              `Soil pH: ${tips.soil.ph}`,
-                              `Sunlight: ${tips.sunlight.requirement || tips.sunlight.requirements}`,
-                              `Watering: ${tips.watering.frequency}`,
-                              ...(Array.isArray(tips.care)
-                                ? tips.care
-                                : hasInstructions(tips.care)
-                                  ? tips.care.instructions
-                                  : []),
-                              `Harvest: ${tips.harvest.timing}`,
-                              `Companion Plants: ${getCompanionPlants(rec.vegetable).join(', ')}`,
-                            ];
-                          })()}
-                        />
-                      </h3>
-                      <p className="text-sm text-green-700">Category: {rec.category}</p>
-                      <p className="text-sm text-green-700">Days to harvest: {rec.daysToHarvest}</p>
-                      {getCompanionPlants(rec.vegetable).length > 0 && (
-                        <p className="text-sm text-green-700 mt-1">
-                          Companion plants: {getCompanionPlants(rec.vegetable).join(', ')}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-gray-500 italic">No planting recommendations</p>
-              )}
+            <div
+              key={month.name}
+              className="bg-white rounded-lg shadow-sm border border-gray-200 p-4"
+            >
+              <h3 className="text-lg font-medium text-gray-900 mb-3">{month.name}</h3>
+              <ul className="space-y-2">
+                {recommendations.map(rec => {
+                  const tips = getPlantingTips(rec.vegetable);
+                  const companionPlants = getCompanionPlants(rec.vegetable);
+                  const careInstructions = tips?.care || [];
+                  const instructions = hasInstructions(careInstructions)
+                    ? careInstructions.instructions
+                    : careInstructions;
+
+                  return (
+                    <li key={rec.vegetable} className="flex items-start gap-2">
+                      <SeedlingButton
+                        plantName={rec.vegetable}
+                        tips={instructions}
+                        disabled={instructions.length === 0}
+                      />
+                      <div>
+                        <span className="text-gray-900">{rec.vegetable}</span>
+                        {companionPlants.length > 0 && (
+                          <p className="text-sm text-gray-500">
+                            Companion plants: {companionPlants.join(', ')}
+                          </p>
+                        )}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           );
         })}

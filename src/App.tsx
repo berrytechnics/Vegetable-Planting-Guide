@@ -105,11 +105,11 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen w-full bg-gray-50 py-8 px-4 overflow-y-auto print:bg-white print:py-0">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8 print:text-black print:mb-4">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4 print:text-black print:mb-4">
           Vegetable Planting Guide
         </h1>
 
-        <div className="print:hidden">
+        <div className="print:hidden space-y-4">
           <ZipCodeInput
             zipCode={zipCode}
             error={error}
@@ -121,14 +121,21 @@ const App: React.FC = () => {
 
           {zone && (
             <>
-              <CategoryFilter
-                selectedCategories={selectedCategories}
-                onCategoryChange={handleCategoryChange}
-              />
-              <SearchInput
-                value={searchTerm}
-                onChange={setSearchTerm}
-              />
+              <div className="border-t border-gray-200 pt-3"></div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1">
+                  <CategoryFilter
+                    selectedCategories={selectedCategories}
+                    onCategoryChange={handleCategoryChange}
+                  />
+                </div>
+                <div className="flex-1">
+                  <SearchInput
+                    value={searchTerm}
+                    onChange={setSearchTerm}
+                  />
+                </div>
+              </div>
             </>
           )}
         </div>
@@ -136,11 +143,7 @@ const App: React.FC = () => {
         {zone && (
           <PlantingCalendar
             zone={zone}
-            plantingGuide={plantingGuide.filter(rec => {
-              const matches = fuzzySearch(searchTerm, rec.vegetable);
-              console.log(`Searching "${searchTerm}" in "${rec.vegetable}": ${matches}`);
-              return matches;
-            })}
+            plantingGuide={plantingGuide.filter(rec => fuzzySearch(searchTerm, rec.vegetable))}
             selectedCategories={selectedCategories}
           />
         )}
