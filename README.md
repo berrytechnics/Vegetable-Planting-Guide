@@ -57,8 +57,7 @@ import { getHardinessZone } from './services/hardinessZoneService';
 
 // Get the hardiness zone for a zip code
 try {
-  const zone = await getHardinessZone('12345');
-  console.log(`Your hardiness zone is: ${zone}`);
+  const zone = await getHardinessZone('74011');
 } catch (error) {
   if (error instanceof Error) {
     console.error('Error:', error.message);
@@ -73,7 +72,6 @@ import { getPlantingGuide } from './services/plantingService';
 // Get planting recommendations for a zip code
 try {
   const recommendations = await getPlantingGuide('12345');
-  console.log('Planting recommendations:', recommendations);
 } catch (error) {
   if (error instanceof Error) {
     console.error('Error:', error.message);

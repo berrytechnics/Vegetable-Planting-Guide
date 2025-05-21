@@ -8,19 +8,17 @@ import { getPlantingRecommendations } from "./services/plantingService";
 import { PlantingRecommendation, VegetableCategory } from "./types/planting";
 
 /**
- * Main application component for the Vegetable Planting Guide
- * Handles zip code input, hardiness zone lookup, and planting recommendations
+ * The main application component that provides a vegetable planting guide
+ * based on the user's hardiness zone and selected vegetable categories
  */
 const App: React.FC = () => {
   const [zipCode, setZipCode] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [zone, setZone] = useState<string>("");
-  const [plantingGuide, setPlantingGuide] = useState<PlantingRecommendation[]>(
-    []
+  const [plantingGuide, setPlantingGuide] = useState<PlantingRecommendation[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<VegetableCategory[]>(
+    Object.values(VegetableCategory)
   );
-  const [selectedCategories, setSelectedCategories] = useState<
-    VegetableCategory[]
-  >(Object.values(VegetableCategory));
 
   /**
    * Handles changes to the zip code input
@@ -76,32 +74,34 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 py-8 px-4 overflow-y-auto">
+    <div className="min-h-screen w-full bg-gray-50 py-8 px-4 overflow-y-auto print:bg-white print:py-0">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-8 print:text-black print:mb-4">
           Vegetable Planting Guide
         </h1>
 
-        <ZipCodeInput
-          zipCode={zipCode}
-          error={error}
-          onSubmit={handleSubmit}
-          onChange={handleZipCodeChange}
-        />
+        <div className="print:hidden">
+          <ZipCodeInput
+            zipCode={zipCode}
+            error={error}
+            onSubmit={handleSubmit}
+            onChange={handleZipCodeChange}
+          />
 
-        {zone && (
-          <>
+          {zone && (
             <CategoryFilter
               selectedCategories={selectedCategories}
               onCategoryChange={handleCategoryChange}
             />
+          )}
+        </div>
 
-            <PlantingCalendar
-              zone={zone}
-              plantingGuide={plantingGuide}
-              selectedCategories={selectedCategories}
-            />
-          </>
+        {zone && (
+          <PlantingCalendar
+            zone={zone}
+            plantingGuide={plantingGuide}
+            selectedCategories={selectedCategories}
+          />
         )}
       </div>
     </div>

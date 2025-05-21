@@ -12,4 +12,15 @@ html, body {
 #root {
   min-height: 100%;
   width: 100%;
+}
+
+@media print {
+  .print-page-break {
+    page-break-after: always;
+    break-after: page;
+  }
+  .print\:break-inside-avoid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
 } 
