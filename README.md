@@ -4,7 +4,7 @@ A React application that provides planting recommendations for vegetables based 
 
 ## Features
 
-- Look up USDA hardiness zone by zip code
+- Look up USDA hardiness zone by zip code or direct zone selection
 - View planting recommendations organized by month
 - Responsive calendar layout
 - Real-time validation of zip code input
@@ -12,6 +12,8 @@ A React application that provides planting recommendations for vegetables based 
 - Detailed growing instructions for each vegetable
 - Companion planting recommendations
 - Care and maintenance tips
+- Clear and intuitive UI with consistent form controls
+- Ability to switch between zip code lookup and direct zone selection
 
 ## Project Structure
 
