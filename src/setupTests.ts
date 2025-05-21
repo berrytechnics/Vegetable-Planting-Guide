@@ -1,4 +1,5 @@
-import '@testing-library/jest-dom';
+// Mock environment variables
+process.env.VITE_RAPIDAPI_KEY = 'test-key';
 
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
