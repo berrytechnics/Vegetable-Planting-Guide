@@ -1,3 +1,9 @@
+import { artichokePlantingData } from './artichoke/plantingData';
+import { artichokePlantingTips } from './artichoke/plantingTips';
+import { asparagusPlantingData } from './asparagus/plantingData';
+import { asparagusPlantingTips } from './asparagus/plantingTips';
+import { basilPlantingData } from './basil/plantingData';
+import { basilPlantingTips } from './basil/plantingTips';
 import { beetsPlantingData } from './beets/plantingData';
 import { beetsPlantingTips } from './beets/plantingTips';
 import { broccoliPlantingData } from './broccoli/plantingData';
@@ -28,6 +34,8 @@ import { okraPlantingData } from './okra/plantingData';
 import { okraPlantingTips } from './okra/plantingTips';
 import { onionsPlantingData } from './onions/plantingData';
 import { onionsPlantingTips } from './onions/plantingTips';
+import { oreganoPlantingData } from './oregano/plantingData';
+import { oreganoPlantingTips } from './oregano/plantingTips';
 import { parsnipsPlantingData } from './parsnips/plantingData';
 import { parsnipsPlantingTips } from './parsnips/plantingTips';
 import { peppersPlantingData } from './peppers/plantingData';
@@ -38,6 +46,8 @@ import { pumpkinsPlantingData } from './pumpkins/plantingData';
 import { pumpkinsPlantingTips } from './pumpkins/plantingTips';
 import { radishesPlantingData } from './radishes/plantingData';
 import { radishesPlantingTips } from './radishes/plantingTips';
+import { rhubarbPlantingData } from './rhubarb/plantingData';
+import { rhubarbPlantingTips } from './rhubarb/plantingTips';
 import { spinachPlantingData } from './spinach/plantingData';
 import { spinachPlantingTips } from './spinach/plantingTips';
 import { sweetPotatoesPlantingData } from './sweet-potatoes/plantingData';
@@ -82,6 +92,11 @@ export const VEGETABLE_DATABASE = [
   parsnipsPlantingData,
   collardGreensPlantingData,
   okraPlantingData,
+  rhubarbPlantingData,
+  asparagusPlantingData,
+  basilPlantingData,
+  oreganoPlantingData,
+  artichokePlantingData,
 ];
 
 // Export all planting tips
@@ -113,6 +128,11 @@ export const PLANTING_TIPS = {
   Parsnips: parsnipsPlantingTips,
   'Collard Greens': collardGreensPlantingTips,
   Okra: okraPlantingTips,
+  Rhubarb: rhubarbPlantingTips,
+  Asparagus: asparagusPlantingTips,
+  Basil: basilPlantingTips,
+  Oregano: oreganoPlantingTips,
+  Artichoke: artichokePlantingTips,
 };
 
 // Export companion plants
@@ -144,4 +164,9 @@ export const COMPANION_PLANTS = {
   Parsnips: parsnipsPlantingData.companionPlants,
   'Collard Greens': collardGreensPlantingData.companionPlants,
   Okra: okraPlantingData.companionPlants,
+  Rhubarb: rhubarbPlantingData.companionPlants,
+  Asparagus: asparagusPlantingData.companionPlants,
+  Basil: basilPlantingData.companionPlants,
+  Oregano: oreganoPlantingData.companionPlants,
+  Artichoke: artichokePlantingData.companionPlants,
 };
