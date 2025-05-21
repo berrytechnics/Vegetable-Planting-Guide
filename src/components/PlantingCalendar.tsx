@@ -2,7 +2,7 @@ import React from "react";
 import { COMPANION_PLANTS } from "../constants/plantingData";
 import { PLANTING_TIPS } from "../constants/plantingTips";
 import { PlantingRecommendation, VegetableCategory } from "../types/planting";
-import SeedlingIcon from "./SeedlingIcon";
+import SeedlingButton from "./SeedlingButton";
 
 interface PlantingCalendarProps {
   zone: string;
@@ -11,11 +11,8 @@ interface PlantingCalendarProps {
 }
 
 /**
- * Component that displays planting recommendations organized by month
- * @param props - Component props
- * @param props.zone - USDA hardiness zone
- * @param props.plantingGuide - Array of planting recommendations
- * @param props.selectedCategories - Array of selected vegetable categories
+ * Displays a monthly planting calendar showing which vegetables can be planted in each month
+ * based on the selected categories and hardiness zone.
  */
 export const PlantingCalendar: React.FC<PlantingCalendarProps> = ({
   zone,
@@ -23,37 +20,21 @@ export const PlantingCalendar: React.FC<PlantingCalendarProps> = ({
   selectedCategories,
 }) => {
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
 
   /**
    * Gets planting recommendations for a specific month
    * @param monthNumber - The month number (1-12)
    * @returns Array of planting recommendations for the month
-   */
+   */ 
   const getRecommendationsByMonth = (monthNumber: number) => {
-    if (selectedCategories.length === 0) {
-      return [];
-    }
+    if (selectedCategories.length === 0) return [];
 
     return plantingGuide.filter((rec) => {
       const monthIndex = monthNumber - 1;
-      return (
-        (selectedCategories.length === 0 ||
-          selectedCategories.includes(rec.category)) &&
-        rec.plantingMonths[monthIndex]
-      );
+      return selectedCategories.includes(rec.category) && rec.plantingMonths[monthIndex];
     });
   };
 
@@ -83,7 +64,7 @@ export const PlantingCalendar: React.FC<PlantingCalendarProps> = ({
                     >
                       <h3 className="font-medium text-green-900 flex justify-between items-center">
                         <span>{rec.vegetable}</span> 
-                        <SeedlingIcon 
+                        <SeedlingButton 
                           plantName={rec.vegetable}
                           tips={PLANTING_TIPS[rec.vegetable] ? [
                             `Soil: ${PLANTING_TIPS[rec.vegetable].soil}`,
@@ -110,8 +91,7 @@ export const PlantingCalendar: React.FC<PlantingCalendarProps> = ({
                       </p>
                       {COMPANION_PLANTS[rec.vegetable] && (
                         <p className="text-sm text-green-700 mt-1">
-                          Companion plants:{" "}
-                          {COMPANION_PLANTS[rec.vegetable].join(", ")}
+                          Companion plants: {COMPANION_PLANTS[rec.vegetable].join(", ")}
                         </p>
                       )}
                     </div>

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { PlantingTipsModal } from './PlantingTipsModal';
 
-export default function SeedlingIcon({
-  onClick,
-  disabled,
-  plantName,
-  tips = [],
-}: {
+interface SeedlingIconProps {
   onClick?: (e: React.MouseEvent<SVGSVGElement>) => void;
   disabled?: boolean;
   plantName?: string;
   tips?: string[];
-}) {
+}
+
+/**
+ * A clickable seedling icon that displays planting tips in a modal when clicked
+ */
+export default function SeedlingButton({ onClick, disabled, plantName, tips = [] }: SeedlingIconProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const SIZE = "20";
 
