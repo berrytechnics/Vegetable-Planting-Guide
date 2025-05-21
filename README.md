@@ -30,6 +30,9 @@ src/
 │   ├── planting.ts          # Core type definitions
 │   └── apiverve__hardinesszone.d.ts  # API client types
 ├── App.tsx          # Main application component
+├── main.tsx         # Application entry point
+├── setupTests.ts    # Test configuration and setup
+├── vite-env.d.ts    # Vite environment type definitions
 └── index.css        # Global styles
 ```
 
