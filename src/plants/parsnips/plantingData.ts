@@ -1,4 +1,4 @@
-import { VegetableCategory } from '../../../types/planting';
+import { VegetableCategory } from '../../types/planting';
 
 export const parsnipsPlantingData = {
   name: 'Parsnips',
