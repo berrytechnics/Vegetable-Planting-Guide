@@ -4,7 +4,7 @@
  * and integrates with the hardiness zone service to provide location-specific recommendations.
  */
 
-import { VEGETABLE_DATABASE } from '../data/vegetables';
+import { VEGETABLE_DATABASE } from '../plants';
 import { PlantingRecommendation, Vegetable } from '../types/planting';
 import { getHardinessZone } from './hardinessZoneService';
 

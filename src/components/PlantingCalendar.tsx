@@ -1,5 +1,5 @@
 import React from 'react';
-import { COMPANION_PLANTS, PLANTING_TIPS } from '../data/vegetables';
+import { COMPANION_PLANTS, PLANTING_TIPS } from '../plants';
 import { PlantingRecommendation, PlantingTips, VegetableCategory } from '../types/planting';
 import SeedlingButton from './SeedlingButton';
 
