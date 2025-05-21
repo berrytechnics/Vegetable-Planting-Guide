@@ -1,5 +1,5 @@
 /**
- * Type definitions for the Vegetable Planting Guide application
+ * Core type definitions for the Vegetable Planting Guide application
  */
 
 /**

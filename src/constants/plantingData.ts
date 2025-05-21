@@ -1,6 +1,10 @@
 import { Month, Vegetable, VegetableCategory } from '../types/planting';
 
 /**
+ * Core data constants for the Vegetable Planting Guide application
+ */
+
+/**
  * Month information for the application
  */
 export const MONTHS: Month[] = [
@@ -20,14 +24,8 @@ export const MONTHS: Month[] = [
 
 /**
  * Comprehensive database of vegetable planting information
- * Contains detailed data about planting times, growing requirements, and care instructions
+ * Contains detailed data about planting times and growing requirements
  * for various vegetables across different USDA hardiness zones.
- * 
- * @property {string} name - The common name of the vegetable
- * @property {VegetableCategory} category - The category of the vegetable (e.g., 'Root', 'Leafy', 'Fruit')
- * @property {number} daysToHarvest - Average number of days from planting to harvest
- * @property {Object} zones - Planting information organized by USDA hardiness zones
- * @property {number[]} zones[zone].plantingMonths - Array of month numbers (1-12) when planting is recommended
  */
 export const VEGETABLE_DATABASE: Vegetable[] = [
   {

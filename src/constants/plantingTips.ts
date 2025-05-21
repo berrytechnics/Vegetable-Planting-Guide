@@ -1,3 +1,10 @@
+/**
+ * Core planting tips data for the Vegetable Planting Guide application
+ */
+
+/**
+ * Interface defining the structure of planting tips for each vegetable
+ */
 interface PlantingTip {
   soil: string;
   sunlight: string;
@@ -8,6 +15,10 @@ interface PlantingTip {
   companion: string[];
 }
 
+/**
+ * Comprehensive database of planting tips for various vegetables
+ * Contains detailed growing instructions and companion planting information
+ */
 export const PLANTING_TIPS: Record<string, PlantingTip> = {
   "Tomatoes": {
     soil: "NPK 5-10-10 for fruiting, 10-10-10 for growth",
