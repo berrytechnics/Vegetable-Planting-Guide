@@ -1,3 +1,9 @@
+/**
+ * The main application component that provides a vegetable planting guide
+ * based on the user's hardiness zone and selected vegetable categories.
+ * Manages the application state and coordinates between different components.
+ */
+
 import React, { useState } from "react";
 import { CategoryFilter } from "./components/CategoryFilter";
 import { PlantingCalendar } from "./components/PlantingCalendar";
@@ -7,10 +13,6 @@ import { getHardinessZone } from "./services/hardinessZoneService";
 import { getPlantingRecommendations } from "./services/plantingService";
 import { PlantingRecommendation, VegetableCategory } from "./types/planting";
 
-/**
- * The main application component that provides a vegetable planting guide
- * based on the user's hardiness zone and selected vegetable categories
- */
 const App: React.FC = () => {
   const [zipCode, setZipCode] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -21,15 +23,14 @@ const App: React.FC = () => {
   );
 
   /**
-   * Handles changes to the zip code input
+   * Handles changes to the zip code input.
+   * Validates input to ensure only numeric values and proper length.
    * @param value - The new zip code value
    */
   const handleZipCodeChange = (value: string) => {
-    // Only allow digits and limit to 5 characters
     const numericValue = value.replace(/[^0-9]/g, '').slice(0, 5);
     setZipCode(numericValue);
     
-    // Clear error if input is valid
     if (numericValue.length === 5) {
       setError("");
     } else if (numericValue.length > 0) {
@@ -40,21 +41,31 @@ const App: React.FC = () => {
   };
 
   /**
-   * Handles form submission to get planting recommendations
+   * Handles form submission to get planting recommendations.
+   * Uses either the zip code or selected zone to get recommendations.
    * @param e - The form event
    */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // If a zone is selected, use it directly
+    if (zone) {
+      const recommendations = getPlantingRecommendations(zone);
+      setPlantingGuide(recommendations);
+      return;
+    }
+
+    // Otherwise, try to get zone from zip code
     if (!zipCode) {
-      setError("Please enter a zip code");
+      setError("Please enter a zip code or select a zone");
       return;
     }
 
     try {
       setPlantingGuide([]);
-      const zone = await getHardinessZone(zipCode);
-      setZone(zone);
-      const recommendations = getPlantingRecommendations(zone);
+      const newZone = await getHardinessZone(zipCode);
+      setZone(newZone);
+      const recommendations = getPlantingRecommendations(newZone);
       setPlantingGuide(recommendations);
     } catch (err) {
       setError("Failed to get hardiness zone. Please try again.");
@@ -62,7 +73,8 @@ const App: React.FC = () => {
   };
 
   /**
-   * Handles changes to category selection
+   * Handles changes to category selection.
+   * Toggles the selected state of a vegetable category.
    * @param category - The category being toggled
    */
   const handleCategoryChange = (category: VegetableCategory) => {
@@ -71,6 +83,22 @@ const App: React.FC = () => {
         ? prev.filter((c) => c !== category)
         : [...prev, category]
     );
+  };
+
+  /**
+   * Handles changes to zone selection.
+   * Updates the planting guide based on the selected zone.
+   * @param newZone - The newly selected zone
+   */
+  const handleZoneChange = (newZone: string) => {
+    setZone(newZone);
+    if (newZone) {
+      const recommendations = getPlantingRecommendations(newZone);
+      setPlantingGuide(recommendations);
+    } else {
+      setPlantingGuide([]);
+      setZipCode(""); // Clear zip code when zone is cleared
+    }
   };
 
   return (
@@ -86,6 +114,8 @@ const App: React.FC = () => {
             error={error}
             onSubmit={handleSubmit}
             onChange={handleZipCodeChange}
+            zone={zone}
+            onZoneChange={handleZoneChange}
           />
 
           {zone && (
