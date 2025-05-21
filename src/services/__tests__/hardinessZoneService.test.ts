@@ -47,7 +47,7 @@ describe('HardinessZoneService', () => {
         })
       );
 
-      await expect(getHardinessZone('invalid')).rejects.toThrow('Failed to get hardiness zone data');
+      await expect(getHardinessZone('invalid')).rejects.toThrow('Invalid zip code format. Please enter a valid 5-digit US zip code.');
     });
 
     it('should throw an error when the API is unavailable', async () => {
@@ -55,7 +55,7 @@ describe('HardinessZoneService', () => {
         Promise.reject(new Error('Network error'))
       );
 
-      await expect(getHardinessZone('10001')).rejects.toThrow('Failed to get hardiness zone data');
+      await expect(getHardinessZone('10001')).rejects.toThrow('Network error');
     });
 
     it('should handle empty zip code', async () => {

@@ -2,19 +2,12 @@
  * Service for retrieving USDA hardiness zone information using the RapidAPI service
  */
 
+
 const MIN_REQUEST_INTERVAL = 1000; // 1 second between requests
 let lastRequestTime = 0;
 
-function getApiKey(): string {
-  if (process.env.NODE_ENV === 'test') {
-    return process.env.VITE_RAPIDAPI_KEY || '';
-  }
-  
-  if (typeof window !== 'undefined') {
-    return import.meta.env.VITE_RAPIDAPI_KEY || '';
-  }
-  
-  return '';
+export function getApiKey(): string {
+  return process.env.VITE_RAPIDAPI_KEY || '';
 }
 
 /**
@@ -35,7 +28,7 @@ export async function getHardinessZone(zipCode: string): Promise<string> {
   }
 
   try {
-    const apiKey = getApiKey();
+    const apiKey = await getApiKey();
     
     if (!apiKey) {
       throw new Error('API key is not configured. Please check your environment variables.');
