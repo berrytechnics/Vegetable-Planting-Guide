@@ -8,12 +8,7 @@ interface ZipCodeInputProps {
 }
 
 /**
- * Component for entering and submitting a zip code
- * @param props - Component props
- * @param props.zipCode - Current zip code value
- * @param props.error - Error message to display
- * @param props.onSubmit - Handler for form submission
- * @param props.onChange - Handler for zip code changes
+ * A form component for entering a zip code to get planting zone information
  */
 export const ZipCodeInput: React.FC<ZipCodeInputProps> = ({
   zipCode,
@@ -33,8 +28,13 @@ export const ZipCodeInput: React.FC<ZipCodeInputProps> = ({
             pattern="[0-9]{5}"
             maxLength={5}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            aria-label="Zip code"
           />
-          {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+          {error && (
+            <p className="mt-2 text-sm text-red-600" role="alert">
+              {error}
+            </p>
+          )}
         </div>
         <button
           type="submit"

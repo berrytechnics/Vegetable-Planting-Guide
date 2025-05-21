@@ -7,10 +7,8 @@ interface CategoryFilterProps {
 }
 
 /**
- * Component for filtering vegetables by category
- * @param props - Component props
- * @param props.selectedCategories - Array of currently selected categories
- * @param props.onCategoryChange - Handler for category selection changes
+ * A filter component that allows users to select vegetable categories
+ * to filter the planting calendar
  */
 export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   selectedCategories,
