@@ -43,7 +43,7 @@ export const ZipCodeInput: React.FC<ZipCodeInputProps> = ({
             <input
               type="text"
               value={zipCode}
-              onChange={(e) => onChange(e.target.value)}
+              onChange={e => onChange(e.target.value)}
               placeholder="Enter your zip code"
               pattern="[0-9]{5}"
               maxLength={5}
@@ -68,7 +68,7 @@ export const ZipCodeInput: React.FC<ZipCodeInputProps> = ({
               data-testid="zone-select"
             >
               <option value="">Select a zone</option>
-              {zones.map((zoneNumber) => (
+              {zones.map(zoneNumber => (
                 <option key={zoneNumber} value={zoneNumber}>
                   Zone {zoneNumber}
                 </option>
@@ -95,4 +95,4 @@ export const ZipCodeInput: React.FC<ZipCodeInputProps> = ({
       </div>
     </form>
   );
-}; 
+};

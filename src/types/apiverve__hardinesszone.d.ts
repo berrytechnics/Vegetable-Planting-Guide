@@ -16,4 +16,4 @@ declare module '@apiverve/hardinesszone' {
     constructor(options: HardinessZoneOptions);
     lookup(params: { zipcode: string }): Promise<HardinessZoneResult>;
   }
-} 
+}

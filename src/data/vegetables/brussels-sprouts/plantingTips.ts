@@ -1,47 +1,47 @@
 export const brusselsSproutsPlantingTips = {
   soil: {
-    type: "Rich, well-draining soil with plenty of organic matter",
-    ph: "6.0-7.0",
+    type: 'Rich, well-draining soil with plenty of organic matter',
+    ph: '6.0-7.0',
     preparation: [
-      "Add compost or well-rotted manure",
-      "Work soil to a depth of 12 inches",
-      "Ensure good drainage",
-      "Keep soil loose and friable"
-    ]
+      'Add compost or well-rotted manure',
+      'Work soil to a depth of 12 inches',
+      'Ensure good drainage',
+      'Keep soil loose and friable',
+    ],
   },
   sunlight: {
-    requirement: "Full sun (6-8 hours daily)",
-    notes: "Can tolerate light shade in hot climates"
+    requirement: 'Full sun (6-8 hours daily)',
+    notes: 'Can tolerate light shade in hot climates',
   },
   watering: {
-    frequency: "Regular, consistent watering",
-    method: "Water at soil level to keep leaves dry",
+    frequency: 'Regular, consistent watering',
+    method: 'Water at soil level to keep leaves dry',
     tips: [
-      "Keep soil consistently moist",
-      "Water deeply once or twice a week",
-      "Avoid overhead watering to prevent disease",
-      "Mulch to retain moisture"
-    ]
+      'Keep soil consistently moist',
+      'Water deeply once or twice a week',
+      'Avoid overhead watering to prevent disease',
+      'Mulch to retain moisture',
+    ],
   },
   care: {
     instructions: [
-      "Start seeds indoors 4-6 weeks before last frost",
-      "Transplant when seedlings have 4-6 true leaves",
-      "Keep area weed-free",
-      "Remove lower leaves as sprouts develop",
-      "Monitor for pests and diseases",
-      "Practice crop rotation"
-    ]
+      'Start seeds indoors 4-6 weeks before last frost',
+      'Transplant when seedlings have 4-6 true leaves',
+      'Keep area weed-free',
+      'Remove lower leaves as sprouts develop',
+      'Monitor for pests and diseases',
+      'Practice crop rotation',
+    ],
   },
   harvest: {
-    timing: "When sprouts are firm and 1-2 inches in diameter",
-    method: "Twist or cut sprouts from the stem",
-    storage: "Store in refrigerator for up to 2 weeks"
+    timing: 'When sprouts are firm and 1-2 inches in diameter',
+    method: 'Twist or cut sprouts from the stem',
+    storage: 'Store in refrigerator for up to 2 weeks',
   },
   problems: {
-    "Cabbage Worms": "Solution: Use row covers or apply Bt (Bacillus thuringiensis)",
-    "Aphids": "Solution: Use insecticidal soap or introduce beneficial insects",
-    "Club Root": "Solution: Maintain proper soil pH and practice crop rotation",
-    "Black Rot": "Solution: Use disease-free seeds and practice crop rotation"
-  }
-}; 
+    'Cabbage Worms': 'Solution: Use row covers or apply Bt (Bacillus thuringiensis)',
+    Aphids: 'Solution: Use insecticidal soap or introduce beneficial insects',
+    'Club Root': 'Solution: Maintain proper soil pH and practice crop rotation',
+    'Black Rot': 'Solution: Use disease-free seeds and practice crop rotation',
+  },
+};

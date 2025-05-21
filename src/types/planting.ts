@@ -24,16 +24,16 @@ export interface Month {
  * Vegetable categories
  */
 export enum VegetableCategory {
-  ROOT = "Root Vegetables",
-  LEAFY = "Leafy Greens",
-  FRUIT = "Fruiting Vegetables",
-  LEGUME = "Legumes",
-  ALLIUM = "Alliums",
-  CRUCIFEROUS = "Cruciferous Vegetables",
-  CUCURBIT = "Cucurbits",
-  PERENNIAL = "Perennial Vegetables",
-  HERB = "Herbs",
-  OTHER = "Other"
+  ROOT = 'Root Vegetables',
+  LEAFY = 'Leafy Greens',
+  FRUIT = 'Fruiting Vegetables',
+  LEGUME = 'Legumes',
+  ALLIUM = 'Alliums',
+  CRUCIFEROUS = 'Cruciferous Vegetables',
+  CUCURBIT = 'Cucurbits',
+  PERENNIAL = 'Perennial Vegetables',
+  HERB = 'Herbs',
+  OTHER = 'Other',
 }
 
 /**
@@ -58,4 +58,4 @@ export interface PlantingRecommendation {
   category: VegetableCategory;
   daysToHarvest: number;
   plantingMonths: string[];
-} 
+}

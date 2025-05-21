@@ -33,7 +33,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   return (
     <div className="mb-8">
       <div className="flex flex-wrap gap-4 mb-4">
-        {allCategories.map((category) => (
+        {allCategories.map(category => (
           <label
             key={category}
             className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
@@ -64,4 +64,4 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
       </div>
     </div>
   );
-}; 
+};

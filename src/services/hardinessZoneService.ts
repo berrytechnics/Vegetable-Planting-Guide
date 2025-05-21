@@ -40,7 +40,7 @@ export async function getHardinessZone(zipCode: string): Promise<string> {
 
   try {
     const apiKey = getApiKey();
-    
+
     if (!apiKey) {
       throw new Error('API key is not configured. Please check your environment variables.');
     }
@@ -61,7 +61,9 @@ export async function getHardinessZone(zipCode: string): Promise<string> {
     if (!response.ok) {
       switch (response.status) {
         case 401:
-          throw new Error('API key is invalid or expired. Please check your RapidAPI key configuration.');
+          throw new Error(
+            'API key is invalid or expired. Please check your RapidAPI key configuration.'
+          );
         case 429:
           throw new Error('Rate limit exceeded. Please wait a moment before trying again.');
         case 400:
